@@ -1,0 +1,33 @@
+docker build documentation
+Every instruction (RUN) adds a layer
+- compress multiple commands using \ && to reduce layers (however error prone)
+Keep layers smaller
+-shell tricks
+-logic
+Pass only what is neccesary to the next layer, clean up unnecesary artifacts
+
+
+Multi-stage builds
+-eliminates intermediate images and artifacts stored on disk
+-create multiple "images" with multiple from statements (stages)
+-pass specific artifacts betwen stages to include in final build
+    FROM golang:1.7.3 AS builder AS GOSDK
+    COPY --from=GOSDK /go/src/github.com/alexellis/href-counter/app .
+-build up to a stage
+    docker build --target builder -t alexellis2/href-counter:latest .
+Uses:
+    debug stage
+    testing stage
+    production stage
+-use images and stages from external sources
+    COPY --from=nginx:latest /etc/nginx/nginx.conf /nginx.conf
+-use previous stage as new stage 
+    FROM alpine:latest as builder
+    RUN apk --no-cache add build-base
+
+    FROM builder as build1
+    COPY source1.cpp source.cpp
+    RUN g++ -o /binary source.cpp
+
+
+    

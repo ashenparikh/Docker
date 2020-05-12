@@ -1,0 +1,32 @@
+Docker Desktop 
+Creates its on Hyperkit virualization environment to run docker containers on. Images can be copied over from docker machine
+Only 1 instance of docker running at once
+Switching between edge docker instance to stable instance (older) is not recommended. Images may not work so save images and containers before.
+
+Docker Desktop
+1.	One Docker VM
+2.	Kubernetes is non-configurable and a 1 node cluster, still useful for multi-container orchestration
+3.	Kubernetes server runs inside Docker container
+
+
+Pieces of Docker
+1.	Docker
+2.	Server: Host Computer
+
+Docker Commands:
+1.	Build Image
+a.	docker build -t rstudio-connect:$tag .
+2.	Validate image
+a.	docker images
+3.	Push to repo 
+a.	docker tag local_image  registry/path:$tag
+b.	docker push registry/path:$tag
+
+4.	Retrieve image
+a.	docker pull registry/path:$tag
+5.	Create container off image 
+a.	sudo docker run -d --privileged -p $hostmachine:container --name $container_name $image
+6.	Enter Container 
+7.	docker exec -it sql1 “bash” (-it specifies container name)
+8.	Commands within container: /opt/mssql-tools/bin/sqlcmd -S localhost -U SA -P "<YourNewStrong@Passw0rd>" 
+
