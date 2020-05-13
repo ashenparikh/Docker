@@ -1,9 +1,7 @@
 MSSQL running in Docker
 1.	Install Docker (System requirements) 
 2.	docker pull mcr.microsoft.com/mssql/server:2019-GA-ubuntu-16.04
-3.	docker run -e "ACCEPT_EULA=Y" -e "SA_PASSWORD=<YourStrong@Passw0rd>" \
-4.	   -p 1433:1433 --name sql1 \
-5.	   -d mcr.microsoft.com/mssql/server:2019-GA-ubuntu-16.04 
+3.	docker run -e "ACCEPT_EULA=Y" -e "SA_PASSWORD=<YourStrong@Passw0rd>" \   -p 1433:1433 --name sql1 \  -d mcr.microsoft.com/mssql/server:2019-GA-ubuntu-16.04 
 6.	Password must meet SQL Server Password requirements, Username not specified and defaults to SA
 7.	docker ps -a (View docker containers)
 8.	docker exec -it sql1 "bash" (Enter docker container + specify terminal)
